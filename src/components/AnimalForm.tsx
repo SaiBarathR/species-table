@@ -6,6 +6,7 @@ interface AnimalFormProps {
   onSubmit: (animal: Omit<Animal, 'id'>) => void;
   onCancel: () => void;
   existingAnimals: Animal[];
+  species: 'Big Cats' | 'Dog' | 'Big Fish';
 }
 
 export const AnimalForm: React.FC<AnimalFormProps> = ({
@@ -13,9 +14,10 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({
   onSubmit,
   onCancel,
   existingAnimals,
+  species,
 }) => {
   const [formData, setFormData] = useState({
-    species: '',
+    species: species,
     name: '',
     size: '',
     location: '',
@@ -25,13 +27,13 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({
 
   useEffect(() => {
     if (animal) {
-      setFormData({
-        species: animal.species,
+      setFormData((prev) => ({
+        ...prev,
         name: animal.name,
-        size: animal.size.toString(),
+        size: String(animal.size),
         location: animal.location,
         imageUrl: animal.imageUrl,
-      });
+      }));
     }
   }, [animal]);
 
@@ -82,18 +84,7 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-4 border rounded">
-      <div className="mb-3">
-        <label className="form-label">Species</label>
-        <input
-          type="text"
-          className={`form-control ${errors.species ? 'is-invalid' : ''}`}
-          value={formData.species}
-          onChange={(e) => setFormData({ ...formData, species: e.target.value })}
-        />
-        {errors.species && <div className="invalid-feedback">{errors.species}</div>}
-      </div>
-
+    <form onSubmit={handleSubmit} className="p-4 border rounded mt-4">
       <div className="mb-3">
         <label className="form-label">Name</label>
         <input
