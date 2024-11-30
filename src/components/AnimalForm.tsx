@@ -19,7 +19,7 @@ export const AnimalForm: React.FC<AnimalFormProps> = ({
     name: '',
     size: '',
     location: '',
-    imageUrl: '',
+    imageUrl: 'https://images.unsplash.com/photo-1561731216-c3a4d99437d5?w=300',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
