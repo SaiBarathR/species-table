@@ -17,7 +17,6 @@ export const bigCats: Animal[] = [
     location: 'Africa',
     imageUrl: 'https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=300'
   },
-  // Add more big cats...
 ];
 
 export const dogs: Animal[] = [
@@ -37,7 +36,6 @@ export const dogs: Animal[] = [
     location: 'Germany',
     imageUrl: 'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=300'
   },
-  // Add more dogs...
 ];
 
 export const bigFish: Animal[] = [
@@ -57,5 +55,4 @@ export const bigFish: Animal[] = [
     location: 'Atlantic Ocean',
     imageUrl: 'https://images.unsplash.com/photo-1566140967404-b8b3932483f5?w=300'
   },
-  // Add more fish...
 ];
