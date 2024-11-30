@@ -1,5 +1,7 @@
+// Import the Animal type
 import { Animal } from '../types/Animal';
 
+// Define an array of big cats with their details
 export const bigCats: Animal[] = [
   {
     id: '1',
@@ -19,6 +21,7 @@ export const bigCats: Animal[] = [
   },
 ];
 
+// Define an array of dogs with their details
 export const dogs: Animal[] = [
   {
     id: '1',
@@ -38,6 +41,7 @@ export const dogs: Animal[] = [
   },
 ];
 
+// Define an array of big fish with their details
 export const bigFish: Animal[] = [
   {
     id: '1',

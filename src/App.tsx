@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
+  // Initialize state for animals, editing animal, and adding animal type
   const [animals, setAnimals] = useState({
     bigCats: bigCats,
     dogs: dogs,
@@ -15,10 +16,12 @@ function App() {
   const [editingAnimal, setEditingAnimal] = useState<{ animal: Animal; type: string } | null>(null);
   const [addingAnimalType, setAddingAnimalType] = useState<string | null>(null);
 
+  // Handle edit action
   const handleEdit = (animal: Animal, type: string) => {
     setEditingAnimal({ animal, type });
   };
 
+  // Handle delete action
   const handleDelete = (id: string, type: keyof typeof animals) => {
     if (confirm('Are you sure you want to delete this animal?')) {
       setAnimals({
@@ -28,10 +31,12 @@ function App() {
     }
   };
 
+  // Handle add action
   const handleAdd = (type: string) => {
     setAddingAnimalType(type);
   };
 
+  // Handle form submission for adding or editing an animal
   const handleSubmit = (animalData: Omit<Animal, 'id'>, type: keyof typeof animals) => {
     if (editingAnimal) {
       setAnimals({
@@ -65,6 +70,7 @@ function App() {
     <div className="container py-4">
       <h1 className="text-center mb-4">Animal Tables</h1>
 
+      {/* Big Cats section */}
       <div className="mb-5">
         <h2>Big Cats</h2>
         {(addingAnimalType === 'bigCats' || editingAnimal?.type === 'bigCats') && (
@@ -88,6 +94,7 @@ function App() {
         />
       </div>
 
+      {/* Dogs section */}
       <div className="mb-5">
         <h2>Dogs</h2>
         {(addingAnimalType === 'dogs' || editingAnimal?.type === 'dogs') && (
@@ -112,6 +119,7 @@ function App() {
         />
       </div>
 
+      {/* Big Fish section */}
       <div className="mb-5">
         <h2>Big Fish</h2>
         {(addingAnimalType === 'bigFish' || editingAnimal?.type === 'bigFish') && (
@@ -131,7 +139,7 @@ function App() {
           onEdit={(animal) => handleEdit(animal, 'bigFish')}
           onDelete={(id) => handleDelete(id, 'bigFish')}
           onAdd={() => handleAdd('bigFish')}
-          sortableFields={['size',]}
+          sortableFields={['size']}
           nameStyle="bold-italic-blue"
         />
       </div>
