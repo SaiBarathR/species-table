@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimalTable } from './components/AnimalTable';
 import { AnimalForm } from './components/AnimalForm';
 import { Animal } from './types/Animal';
@@ -55,11 +55,11 @@ function App() {
       setAddingAnimalType(null);
     }
   };
-  console.log("addingAnimalType", addingAnimalType, "editingAnimal", editingAnimal)
+
   return (
     <div className="container py-4">
       <h1 className="text-center mb-4">Animal Tables</h1>
-      
+
       <div className="mb-5">
         <h2>Big Cats</h2>
         {(addingAnimalType === 'bigCats' || editingAnimal?.type === 'bigCats') && (
@@ -78,13 +78,13 @@ function App() {
           onEdit={(animal) => handleEdit(animal, 'bigCats')}
           onDelete={(id) => handleDelete(id, 'bigCats')}
           onAdd={() => handleAdd('bigCats')}
-          sortableFields={['name', 'size', 'location','species']}
+          sortableFields={['name', 'size', 'location', 'species']}
         />
       </div>
 
       <div className="mb-5">
         <h2>Dogs</h2>
-        {addingAnimalType === 'dogs' || (editingAnimal?.type === 'dogs' && (
+        {(addingAnimalType === 'dogs' || editingAnimal?.type === 'dogs') && (
           <AnimalForm
             animal={editingAnimal?.animal}
             onSubmit={(data) => handleSubmit(data, 'dogs')}
@@ -94,7 +94,7 @@ function App() {
             }}
             existingAnimals={animals.dogs}
           />
-        ))}
+        )}
         <AnimalTable
           animals={animals.dogs}
           onEdit={(animal) => handleEdit(animal, 'dogs')}
@@ -107,7 +107,7 @@ function App() {
 
       <div className="mb-5">
         <h2>Big Fish</h2>
-        {addingAnimalType === 'bigFish' || (editingAnimal?.type === 'bigFish' && (
+        {(addingAnimalType === 'bigFish' || editingAnimal?.type === 'bigFish') && (
           <AnimalForm
             animal={editingAnimal?.animal}
             onSubmit={(data) => handleSubmit(data, 'bigFish')}
@@ -117,13 +117,13 @@ function App() {
             }}
             existingAnimals={animals.bigFish}
           />
-        ))}
+        )}
         <AnimalTable
           animals={animals.bigFish}
           onEdit={(animal) => handleEdit(animal, 'bigFish')}
           onDelete={(id) => handleDelete(id, 'bigFish')}
           onAdd={() => handleAdd('bigFish')}
-          sortableFields={['size', ]}
+          sortableFields={['size',]}
           nameStyle="bold-italic-blue"
         />
       </div>
