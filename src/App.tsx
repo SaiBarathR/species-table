@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AnimalTable } from './components/AnimalTable';
 import { AnimalForm } from './components/AnimalForm';
 import { Animal } from './types/Animal';
@@ -44,15 +44,20 @@ function App() {
       });
       setEditingAnimal(null);
     } else {
-      const newAnimal = {
-        ...animalData,
-        id: Math.random().toString(36).substr(2, 9),
-      };
-      setAnimals({
-        ...animals,
-        [type]: [...animals[type], newAnimal],
-      });
-      setAddingAnimalType(null);
+      if (animals[type].some((a) => a.name.trim().toLowerCase() === animalData.name.trim().toLowerCase())) {
+        alert('This animal already exists');
+      } else {
+        const newAnimal = {
+          ...animalData,
+          id: Math.random().toString(36).substr(2, 9),
+        };
+        setAnimals({
+          ...animals,
+          [type]: [...animals[type], newAnimal],
+        });
+        setAddingAnimalType(null);
+      }
+
     }
   };
 
@@ -71,6 +76,7 @@ function App() {
               setEditingAnimal(null);
             }}
             existingAnimals={animals.bigCats}
+            species="Big Cats"
           />
         )}
         <AnimalTable
@@ -93,6 +99,7 @@ function App() {
               setEditingAnimal(null);
             }}
             existingAnimals={animals.dogs}
+            species="Dog"
           />
         )}
         <AnimalTable
@@ -116,6 +123,7 @@ function App() {
               setEditingAnimal(null);
             }}
             existingAnimals={animals.bigFish}
+            species="Big Fish"
           />
         )}
         <AnimalTable
